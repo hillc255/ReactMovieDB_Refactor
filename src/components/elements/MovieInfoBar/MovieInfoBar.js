@@ -3,8 +3,8 @@ import FontAwesome from 'react-fontawesome';
 import { calcTime, convertMoney } from '../../../helpers.js';
 import './MovieInfoBar.css';
 
-const MovieInfoBar = (props) => {
-    return (
+//refactor...remove "= {(return"
+const MovieInfoBar = (props) => (
         <div className="rmdb-movieinfobar">
             <div className="rmdb-movieinfobar-content">
                 <div className="rmdb-movieinfobar-content-col">
@@ -22,6 +22,5 @@ const MovieInfoBar = (props) => {
         </div>
     </div>
     )
-}
 
 export default MovieInfoBar;

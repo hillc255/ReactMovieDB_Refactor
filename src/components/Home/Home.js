@@ -57,28 +57,29 @@ loadMoreItems = () => {
     this.fetchItems(endpoint);
 }
 
-fetchItems = (endpoint) => {
 
+//async endpoints
+fetchItems = async endpoint => {
     //  //ES6 destructuring the state
     const {movies, heroImage, searchTerm} = this.state;
-
-    fetch(endpoint)
-    .then(result => result.json())
-    .then(result => {
-        this.setState({
+    const result = await (await fetch(endpoint)).json();
+    this.setState(
+        {
             movies: [...movies, ...result.results],
             heroImage: heroImage || result.results[0],
             loading: false,
             currentPage: result.page,
             totalPages: result.total_pages
-        }, ()=> {
+        }, 
+        ()=> {
+            //Remember state for the next mount if we're not in the search view
             if(searchTerm === ""){
-            localStorage.setItem('HomeState', JSON.stringify(this.state));
+            sessionStorage.setItem("HomeState", JSON.stringify(this.state));
             }
-        })
-    })
-    .catch(error => console.error('Error:', error))
+        }
+    );
 }
+
 
     render() {
         //ES6 destructuring the state

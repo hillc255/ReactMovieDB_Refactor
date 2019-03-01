@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './MovieThumb.css';
 
-//ES6 destructuring the props
 const MovieThumb = ({image, movieId, movieName, clickable}) => {
     return (
      <div className="rmdb-moviethumb">
