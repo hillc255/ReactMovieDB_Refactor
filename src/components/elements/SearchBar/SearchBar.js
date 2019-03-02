@@ -6,15 +6,19 @@ class SearchBar extends Component {
     state = {
         value: ''
     }
-
+    // Must have this here so we can reset it
     timeout = null;
 
     doSearch = (event) => {
+        //ES6 Destructuring props and state
+        const { callback } = this.props;
+        
         this.setState({value: event.target.value })
         clearTimeout(this.timeout);
-
+        //Set a timeout to wait for this user to stop waiting
+        //So we don't have to make unnecessary calls
     this.timeout = setTimeout( () => {
-        this.props.callback(this.state.value);
+        callback(false, this.state.value);
     }, 500)
 }  
 
